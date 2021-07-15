@@ -1,0 +1,15 @@
+{
+  "_id": "5af59dfc-43aa-4b01-9912-d4641fdb3101",
+  "_expired": false,
+  "_geohash": "u15p6c",
+  "_updated": "2021-07-14T15:47:28.250Z",
+  "context": "CTXT50500505500000",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [4.304795265197753, 51.87604056761209]
+  },
+  "height": 10,
+  "mission": "MSN20200101100000",
+  "subtype": "fireman",
+  "type": "person"
+}

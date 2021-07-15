@@ -1,0 +1,113 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*.faker.ts"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": ["plugin:sonarjs/recommended", "plugin:prettier/recommended"],
+      "plugins": ["ban", "jest", "sonarjs", "prettier"],
+      "env": {
+        "jest/globals": true
+      },
+      "rules": {
+        "prettier/prettier": "error",
+        "ban/ban": [
+          "error",
+          {
+            "name": "Object.assign",
+            "message": "Use the spread operator instead."
+          }
+        ],
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "no-public"
+          }
+        ],
+        "@typescript-eslint/member-delimiter-style": [
+          "off",
+          {
+            "multiline": {
+              "delimiter": "none",
+              "requireLast": true
+            },
+            "singleline": {
+              "delimiter": "semi",
+              "requireLast": false
+            }
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": ["static-field", "instance-field", "static-method", "instance-method"]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "leadingUnderscore": "allow",
+            "selector": "variableLike",
+            "format": ["camelCase", "UPPER_CASE"]
+          }
+        ],
+        "@typescript-eslint/no-misused-new": "error",
+        "@typescript-eslint/no-namespace": "error",
+        "@typescript-eslint/no-unused-expressions": "error",
+        "@typescript-eslint/prefer-function-type": "error",
+        "@typescript-eslint/unified-signatures": "error",
+        "@typescript-eslint/no-shadow": "off",
+        "arrow-body-style": "error",
+        "constructor-super": "error",
+        "eqeqeq": ["error", "smart"],
+        "guard-for-in": "error",
+        "id-blacklist": [
+          "error",
+          "any",
+          "Number",
+          "number",
+          "String",
+          "string",
+          "Boolean",
+          "boolean",
+          "Undefined",
+          "undefined"
+        ],
+        "id-match": "error",
+        "import/no-deprecated": "warn",
+        "jsdoc/check-alignment": "error",
+        "jsdoc/check-indentation": "error",
+        "jsdoc/newline-after-description": "error",
+        "linebreak-style": ["error", "unix"],
+        // "max-len": "off",
+        "new-parens": "off",
+        "no-bitwise": "error",
+        "no-caller": "error",
+        // "no-console": ["error", {}],
+        "no-debugger": "error",
+        "no-eval": "error",
+        "no-fallthrough": "error",
+        "no-new-wrappers": "error",
+        "no-restricted-imports": ["error", "rxjs/Rx"],
+        "no-shadow": "off",
+        "no-throw-literal": "error",
+        "no-undef-init": "error",
+        "no-underscore-dangle": "off",
+        "no-unused-labels": "error",
+        "no-var": "error",
+        "prefer-arrow/prefer-arrow-functions": "off",
+        "prefer-const": "error",
+        "quote-props": "off",
+        "radix": "error",
+        "space-before-function-paren": "off",
+        "space-in-parens": ["off", "never"]
+      }
+    }
+  ]
+}

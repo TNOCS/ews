@@ -1,0 +1,42 @@
+{
+  "name": "ews",
+  "version": "0.1.0",
+  "description": "Early Warning System for First Responders",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc",
+    "docker": "npm run docker:build:ews && npm run docker:tag:ews && npm run docker:publish:ews && npm run docker:tag:ews:latest && npm run docker:publish:ews:latest",
+    "ews": "node dist/index.js",
+    "docker:build:ews": "docker build -t ews .",
+    "docker:tag:ews": "docker tag ews tnocs/ews:2.0.8",
+    "docker:tag:ews:latest": "docker tag ews tnocs/ews:latest",
+    "docker:publish:ews": "docker push tnocs/ews:2.0.8",
+    "docker:publish:ews:latest": "docker push tnocs/ews:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TNOCS/ews.git"
+  },
+  "keywords": [
+    "early warning system",
+    "ASSISTANCE EU project"
+  ],
+  "author": "Erik Vullings <erik.vullings@gmail.com> (http://www.tno.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TNOCS/ews/issues"
+  },
+  "homepage": "https://github.com/TNOCS/ews#readme",
+  "dependencies": {
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/turf": "^6.5.0",
+    "node-test-bed-adapter": "^2.0.8"
+  },
+  "devDependencies": {
+    "@types/geojson": "^7946.0.7",
+    "@types/node": "^14.14.35",
+    "typescript": "4.0.2"
+  }
+}
