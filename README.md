@@ -2,7 +2,7 @@
 
 # EWS
 
-Early Warning System for First Responders
+Early Warning System for First Responders: it listen to toxic plumes (from Kafka's `cbrn_geojson` topic) and resources (from Kafka's `resource` topic) and when a resource enters a toxic area, a message is sent (to Kafka's `message` topic).
 
 ## Installation
 
@@ -18,20 +18,15 @@ Using `npm`:
 npm i
 ```
 
-## Run
+## Develop
 
 ```bash
-npm run build:serve
+npm start
 ```
 
-## Converting JSON to AVRO schema's
-
-Use the JSON examples in the SAS Data Model, convert them online via [AVRO-schema-from-JSON](https://toolslick.com/generation/metadata/avro-schema-from-json), and perform some manual tweaking, specifically make certain properties optional.
-
-## Converting AVRO schema's to Typescript interface definitions
+## Build and run
 
 ```bash
-npm i -g avro-typescript-converter
-# For each AVRO file
-avro-typescript-converter.cmd resource-value.avsc -v
+npm run build
+npm run ews
 ```

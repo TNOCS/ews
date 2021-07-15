@@ -6,13 +6,13 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "start": "tsc -w",
-    "build": "tsc",
-    "docker": "npm run docker:build:ews && npm run docker:tag:ews && npm run docker:publish:ews && npm run docker:tag:ews:latest && npm run docker:publish:ews:latest",
+    "build": "tsc -b",
     "ews": "node dist/index.js",
+    "docker": "npm run docker:build:ews && npm run docker:tag:ews && npm run docker:publish:ews && npm run docker:tag:ews:latest && npm run docker:publish:ews:latest",
     "docker:build:ews": "docker build -t ews .",
-    "docker:tag:ews": "docker tag ews tnocs/ews:2.0.8",
+    "docker:tag:ews": "docker tag ews tnocs/ews:0.1.0",
     "docker:tag:ews:latest": "docker tag ews tnocs/ews:latest",
-    "docker:publish:ews": "docker push tnocs/ews:2.0.8",
+    "docker:publish:ews": "docker push tnocs/ews:0.1.0",
     "docker:publish:ews:latest": "docker push tnocs/ews:latest"
   },
   "repository": {
