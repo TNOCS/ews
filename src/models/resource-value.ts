@@ -1,19 +1,19 @@
 export enum ResourceType {
-  person = 'person',
-  vehicle = 'vehicle',
-  unmannedVehicle = 'unmannedVehicle',
+  person = 'PERSON',
+  vehicle = 'VEHICLE',
+  unmannedVehicle = 'UNMANNED_VEHICLE',
 }
 
 export enum ResourceSubtype {
-  fireman = 'fireman',
-  policeman = 'policeman',
-  first_responder = 'first_responder',
-  sanitary = 'sanitary',
-  car = 'car',
-  van = 'van',
-  truck = 'truck',
-  air = 'air',
-  ground = 'ground',
+  FIREFIGHTER = 'FIREFIGHTER',
+  POLICE = 'POLICE',
+  MEDICAL = 'MEDICAL',
+  OTHER = 'OTHER',
+  CAR = 'CAR',
+  VAN = 'VAN',
+  TRUCK = 'TRUCK',
+  AIR = 'AIR',
+  GROUND = 'GROUND',
 }
 
 export interface IGeometry {
@@ -85,7 +85,8 @@ export interface IResource {
   geometry: IGeometry;
   /** Height above ground at last status */
   height?: null | undefined | number;
-  /** Speed at last status */ speed?: null | undefined | number;
+  /** Speed at last status */
+  speed?: null | undefined | number;
   /** Attitude at last status */
   attitude?: null | undefined | IAttitude;
   /** Properties and last status of the resource cameras */
@@ -94,5 +95,5 @@ export interface IResource {
    * Date in ISO 8601 format in which the resource is inserted/updated, e.g.
    * 2020-01-01T10:00:00.000Z
    */
-  timestamp: number;
+  timestamp: string;
 }

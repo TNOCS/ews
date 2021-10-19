@@ -132,7 +132,11 @@ const sendWarnings = (newEwsStatus: { [id: string]: IEwsStatus }) => {
         priority: dangerLevelToPriority(danger),
         type: dangerLevelToMessageType(danger),
         text: dangerLevelToMessage(danger),
-        timestamp,
+        attachments: [''],
+        response: '',
+        dueBy: timestamp,
+        expires: timestamp,
+        timestamp: timestamp,
       } as IMessage;
       sendMessage(message);
       s.warningSent = true;
@@ -148,10 +152,15 @@ const sendWarnings = (newEwsStatus: { [id: string]: IEwsStatus }) => {
         context: resource.context,
         sender: clientId,
         resource: resource._id,
+        geometry: resource.geometry,
         priority: dangerLevelToPriority(danger),
         type: dangerLevelToMessageType(danger),
         text: dangerLevelToMessage(danger),
-        timestamp,
+        attachments: [''],
+        response: '',
+        dueBy: timestamp,
+        expires: timestamp,
+        timestamp: timestamp,
       } as IMessage;
       sendMessage(message);
     });
