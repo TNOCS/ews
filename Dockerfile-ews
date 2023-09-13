@@ -1,0 +1,22 @@
+# Creates the Early Warning System process
+
+# Build and run the app
+FROM node:12-alpine as builder
+
+# Install gyp dependencies
+RUN apk add --no-cache --virtual .gyp python3 make g++ 
+
+RUN mkdir -p /root/ews
+COPY . /root/ews
+WORKDIR /root/ews
+
+RUN npm install
+RUN npm run build
+
+FROM node:12-alpine as app
+
+# Copy built node modules and binaries without including the toolchain
+COPY --from=builder /root/ews/node_modules ./node_modules
+COPY --from=builder /root/ews/dist ./dist
+
+CMD ["node", "./dist/index.js"]

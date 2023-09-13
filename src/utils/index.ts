@@ -56,11 +56,11 @@ export const geometryToAvro: (
     };
   };
 
-export const convertToxicityLevelToDangerLevel = (level: number | null = 0) => level === null || level < 1e-7
+export const convertToxicityLevelToDangerLevel = (level: 'VERY_LOW' | 'LOW' | 'MEDIUM' | 'HIGH' | 'VERY_HIGH' | undefined) => level === null
   ? DangerLevel.SAFE
-  : level <= 1e-6
+  : level === "VERY_LOW"
     ? DangerLevel.AT_RISK
-    : level <= 5e-6
+    : level === "MEDIUM"
       ? DangerLevel.AT_HIGH_RISK
       : DangerLevel.AT_VERY_HIGH_RISK;
 

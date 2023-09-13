@@ -74,18 +74,22 @@ const verifyResourceSafety = () => {
     .entries(plumeStore)
     .filter(([_, f]) => f.geometry && f.geometry.type && /polygon/i.test(f.geometry.type))
     .reduce((acc, [areaId, f]) => {
-      const { properties: { level } = {} } = f;
+      const { properties: { toxicityLevel } = {} } = f;
       const geometry = f.geometry as IPolygon;
-      const danger = convertToxicityLevelToDangerLevel(level);
+      console.log(`toxicitylevel: ${toxicityLevel}`)
+      const danger = convertToxicityLevelToDangerLevel(toxicityLevel);
+      console.log(danger);
       resources
         .filter(r => r.geometry && /point/i.test(r.geometry.type || ''))
         .forEach(r => {
           const point = r.geometry as IPoint;
           const isInside = booleanPointInPolygon(point, geometry);
+          console.log(isInside)
           if (isInside && (!acc[r._id] || acc[r._id].danger < danger)) acc[r._id] = { resource: r, danger, areaId, warningSent: false };
         })
       return acc;
     }, {} as { [id: string]: IEwsStatus });
+  console.log(JSON.stringify(newEwsState, null, 2))
   sendWarnings(newEwsState);
   console.log(`${new Date().toLocaleTimeString()}: Finished checking ${resourceCount} resource(s) and ${plumeCount} plume(s).`);
   setTimeout(verifyResourceSafety, EWS_INTERVAL * 1000);
@@ -138,6 +142,7 @@ const sendWarnings = (newEwsStatus: { [id: string]: IEwsStatus }) => {
         expires: timestamp,
         timestamp: timestamp,
       } as IMessage;
+      console.log(`sending message: ${message}`)
       sendMessage(message);
       s.warningSent = true;
     });
@@ -162,6 +167,7 @@ const sendWarnings = (newEwsStatus: { [id: string]: IEwsStatus }) => {
         expires: timestamp,
         timestamp: timestamp,
       } as IMessage;
+      console.log(`sending message: ${message}`)
       sendMessage(message);
     });
   ewsStatus = newEwsStatus;
